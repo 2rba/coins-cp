@@ -15,6 +15,11 @@ defmodule Cp.Pool do
     timestamps()
   end
 
+  def save_transactions do
+    Cp.Mph.Api.transactions("feathercoin")
+    |> Enum.sort(&(&1["id"] < &2["id"]))
+  end
+
   @doc false
   def changeset(%Pool{} = pool, attrs) do
     pool

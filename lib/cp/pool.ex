@@ -5,10 +5,11 @@ defmodule Cp.Pool do
 
 
   schema "transactions" do
+    field :coin, :string
+    field :trx_id, :integer
     field :amount, :float
     field :btc_amount, :float
-    field :coin, :string
-    field :time, :utc_datetime
+    field :time, Timex.Ecto.DateTime
     field :usd_amount, :float
     field :payload, :map
 
@@ -23,7 +24,7 @@ defmodule Cp.Pool do
   @doc false
   def changeset(%Pool{} = pool, attrs) do
     pool
-    |> cast(attrs, [:coin, :amount, :btc_amount, :usd_amount, :time])
-    |> validate_required([:coin, :amount, :btc_amount, :usd_amount, :time])
+    |> cast(attrs, [:coin, :trx_id, :amount, :btc_amount, :time, :usd_amount, :payload])
+    |> validate_required([:coin])
   end
 end

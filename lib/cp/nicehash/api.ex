@@ -1,8 +1,8 @@
 defmodule Cp.Nicehash.Api do
 
   def orders(location, algo) do
-    %{"result" => result } = fetch("orders.get", %{location: location, algo: algo})
-    result
+    %{"result" => %{"orders" => orders} } = fetch("orders.get", %{location: location, algo: algo})
+    orders
   end
 
   defp fetch(method, params) do

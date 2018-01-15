@@ -1,4 +1,4 @@
-defmodule Nicehash do
+defmodule Cp.Nicehash do
   @algos [
     0, #Scrypt
     3, #X11
@@ -25,5 +25,33 @@ defmodule Nicehash do
 
   def algos_list do
     @algos
+  end
+
+  def save_orders do
+    Enum.each algos_list, fn(algo) ->
+      Enum.each [0, 1], fn(location) ->
+        save_algo_orders(location, algo)
+      end
+    end
+  end
+
+  defp save_algo_orders(location, algo) do
+    orders = Cp.Nicehash.Api.orders(location, algo)
+    Enum.each orders, fn(order) ->
+      IO.puts("---")
+      IO.puts(order["limit_speed"])
+      data = %Cp.Nicehash.Orders{}
+      data = %{ data | fields: %{ data.fields |
+        price: order["price"],
+        accepted_speed: order["accepted_speed"],
+        workers: order["workers"],
+        limit_speed: order["limit_speed"],
+        alive: order["alive"],
+        order_id: order["id"],
+        type: order["type"]
+      }}
+      data = %{ data | tags: %{ data.tags | location: location, algo: algo }}
+      data |> Cp.Influx.write()
+    end
   end
 end

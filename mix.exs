@@ -20,7 +20,7 @@ defmodule Cp.Mixfile do
   def application do
     [
       mod: {Cp.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :instream]
     ]
   end
 
@@ -43,7 +43,8 @@ defmodule Cp.Mixfile do
       {:cowboy, "~> 1.0"},
       {:httpoison, "~> 0.13"},
       {:timex, "~> 3.1"},
-      {:timex_ecto, "~> 3.0"}
+      {:timex_ecto, "~> 3.0"},
+      { :instream, "~> 0.17" }
     ]
   end
 

@@ -14,6 +14,7 @@ defmodule Cp.Application do
       supervisor(CpWeb.Endpoint, []),
       # Start your own worker by calling: Cp.Worker.start_link(arg1, arg2, arg3)
       # worker(Cp.Worker, [arg1, arg2, arg3]),
+      Cp.Influx
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

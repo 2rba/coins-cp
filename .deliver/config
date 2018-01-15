@@ -1,0 +1,18 @@
+APP="cp"
+
+BUILD_HOST="192.168.30.1"
+BUILD_USER="devel"
+BUILD_AT="/home/devel/app_build"
+
+PRODUCTION_HOSTS="192.168.30.1" 
+PRODUCTION_USER="devel" 
+DELIVER_TO="/home/devel/app_release" 
+
+pre_erlang_get_and_update_deps() {
+  local _prod_secret_path="/home/devel/app_config/prod.secret.exs"
+  if [ "$TARGET_MIX_ENV" = "prod" ]; then
+    __sync_remote "
+      ln -sfn '$_prod_secret_path' '$BUILD_AT/config/prod.secret.exs'
+    "
+  fi
+}

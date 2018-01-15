@@ -44,7 +44,9 @@ defmodule Cp.Mixfile do
       {:httpoison, "~> 0.13"},
       {:timex, "~> 3.1"},
       {:timex_ecto, "~> 3.0"},
-      { :instream, "~> 0.17" }
+      {:instream, "~> 0.17" },
+      {:edeliver, "~> 1.4.3"},
+      {:distillery, "~> 1.4"}
     ]
   end
 

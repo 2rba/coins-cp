@@ -42,10 +42,10 @@ defmodule Cp.Nicehash do
       IO.puts(order["limit_speed"])
       data = %Cp.Nicehash.Orders{}
       data = %{ data | fields: %{ data.fields |
-        price: order["price"],
-        accepted_speed: order["accepted_speed"],
+        price: Float.parse(order["price"]) |> elem(0),
+        accepted_speed: Float.parse(order["accepted_speed"]) |> elem(0),
         workers: order["workers"],
-        limit_speed: order["limit_speed"],
+        limit_speed: Float.parse(order["limit_speed"]) |> elem(0),
         alive: order["alive"],
         order_id: order["id"],
         type: order["type"]

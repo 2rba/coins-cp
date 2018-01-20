@@ -46,7 +46,8 @@ defmodule Cp.Mixfile do
       {:timex_ecto, "~> 3.0"},
       {:instream, "~> 0.17" },
       {:edeliver, "~> 1.4.3"},
-      {:distillery, "~> 1.4"}
+      {:distillery, "~> 1.4"},
+      {:floki, "~> 0.19.0"}
     ]
   end
 

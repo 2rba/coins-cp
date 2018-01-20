@@ -1,4 +1,3 @@
-require IEx;
 defmodule Cp.Mph do
 
   def save_transactions do
